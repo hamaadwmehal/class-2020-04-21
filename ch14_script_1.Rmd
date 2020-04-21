@@ -26,9 +26,23 @@ cces <- read_rds("cces_initial.rds")
 **Prompt:** Take a peek at the data and try and figure out what the variables mean. You can find the codebook here: https://dataverse.harvard.edu/file.xhtml?persistentId=doi:10.7910/DVN/II2DB6/EARRB5&version=4.1 
 
 1) What is the age of oldest person who responded to this survey?
+```{r}
+cces %>%
+  arrange(desc(age))
 
+```
 2) What proportion of females voted for Trump? 
+```{r}
+n_f <- cces %>%
+  filter(gender == "Female") %>%
+  count()
 
+n_f_t <- cces %>%
+  filter(gender == "Female" & trump == "1") %>%
+  count()
+
+n_f_t / n_f
+```
 
 # Scene 2
 
